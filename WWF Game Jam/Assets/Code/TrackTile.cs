@@ -7,9 +7,6 @@ using UnityEditor;
 
 public class TrackTile : Tile
 {
-    public bool isTrackEnd = false;
-    public Vector2Int Direction;
-
 #if UNITY_EDITOR
     // The following is a helper that adds a menu item to create a RoadTile Asset
     [MenuItem("Assets/Create/Track Tile")]

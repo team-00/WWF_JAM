@@ -31,9 +31,7 @@ public class TrackManager : MonoBehaviour
         }
         curve.AddKey(new Keyframe(trackLength, waypoints.Length - 1, 0f, 0f, 0f, 0f));
 
-
-
-        trashbags.Add(Instantiate(trashbag, GetTilemapPos(waypoints[0], -1), Quaternion.identity).GetComponent<Trashbag>());
+        trashbags.Add(Instantiate(trashbag, GetTilemapPos(waypoints[0], 0f), Quaternion.identity).GetComponent<Trashbag>());
     }
 
     private void Update()
@@ -55,9 +53,9 @@ public class TrackManager : MonoBehaviour
                 waypoints[actualIndex],
                 waypoints[actualIndex + 1],
                 actualProgress - actualIndex);
-            trashbag.transform.position = GetTilemapPos(resultPos, -1f);
+            trashbag.transform.position = GetTilemapPos(resultPos, 0f);
 
-            trashbag.trackProgress += trashbag.stats.progressionSpeed * dt;
+            trashbag.trackProgress += trashbag.stats.ProgressionSpeed * dt;
         }
     }
 

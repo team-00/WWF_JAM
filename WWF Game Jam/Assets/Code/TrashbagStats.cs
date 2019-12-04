@@ -8,8 +8,8 @@ public class TrashbagStats : ScriptableObject
     public int ChildSpawnCount;
 
     [Header("Visuals")]
-    public Color trashColor = Color.white;
+    public Color TrashColor = Color.white;
 
     [Header("Stats")]
-    public float progressionSpeed;
+    public float ProgressionSpeed;
 }
