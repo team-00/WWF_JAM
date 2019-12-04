@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fec6018abc113142838dfb4c413108b, type: 3}
-  m_Name: Default Trashbag
+  m_Script: {fileID: 11500000, guid: d1f611fbc0d9d644c9236b3b2c8d88b1, type: 3}
+  m_Name: Default Turret
   m_EditorClassIdentifier: 
-  ChildTrashbagStats: {fileID: 0}
-  ChildSpawnCount: 0
-  TrashColor: {r: 1, g: 1, b: 1, a: 1}
-  ProgressionSpeed: 5
+  ColliderRadius: 0.4
+  TrackCollisionRadius: 0.2
+  AttackRange: 3
