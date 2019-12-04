@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2944375eebb731458efd08cfc5baf23, type: 3}
-  m_Name: TrackCurve_2
+  m_Name: TrackEnd
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 3c895e4d716da7c4396f04e9992f0ac2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 585ca8517f04ecc4c818011c6c04171a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,6 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 1
+  m_ColliderType: 2
+  isTrackEnd: 1
+  Direction: {x: 0, y: 0}
