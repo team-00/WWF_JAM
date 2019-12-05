@@ -122,9 +122,17 @@ public class MainUIWindow : WindowBase
 
     public void UpdateUI(int health, int coins)
     {
-        healthText.text = "" + health;
-        coinText.text = coins + " $";
+        UpdateHeath(health);
+        UpdateCoin(coins);
+    }
 
+    public void UpdateHeath(int health)
+    {
+        healthText.text = "" + health;
         healthImage.fillAmount = ((1f / (float)maxhealth) * (float)health);
+    }
+    public void UpdateCoin(int coins)
+    {
+        coinText.text = coins + " $";
     }
 }
