@@ -1,9 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class OptionsWindow : WindowBase
+public class InfoWindow : WindowBase
 {
+    [SerializeField]
+    private TextMeshProUGUI nameText, infoText;
+
+    public void SetUp(string name, string info)
+    {
+        nameText.text = name;
+        infoText.text = info;
+    }
+
     public override void Disable()
     {
         gameObject.SetActive(false);

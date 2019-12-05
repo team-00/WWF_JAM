@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuWindow : MenuWindow
+public class MainMenuWindow : WindowBase
 {
     [SerializeField]
     private Button start, options, exit;
