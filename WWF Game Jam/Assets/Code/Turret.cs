@@ -4,8 +4,22 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     [HideInInspector] public Trashbag target;
+    [HideInInspector] public bool IsActive;
 
-    public TurretStats Stats;
+    private TurretStats stats;
+    public TurretStats Stats
+    {
+        get => stats;
+        set
+        {
+            stats = value;
+            stats.ApplyStats(this);
+
+            rangeIndicator.transform.localScale = new Vector3(Stats.AttackRange, Stats.AttackRange, 0f);
+            circleCollider.radius = Stats.ColliderRadius;
+            sqrAttackRange = Stats.AttackRange * Stats.AttackRange;
+        }
+    }
     [SerializeField] Color invalidColor;
     [SerializeField] LayerMask trashLayer;
 
@@ -16,7 +30,6 @@ public class Turret : MonoBehaviour
     private GameObject rangeIndicator;
     private float currentAttackTimer;
     private float sqrAttackRange;
-    private bool isActive;
     private int colCount;
     private readonly Queue<Projectile> pooledProjectiles = new Queue<Projectile>();
 
@@ -26,10 +39,6 @@ public class Turret : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
         rangeIndicator = transform.GetChild(0).gameObject;
-        rangeIndicator.transform.localScale = new Vector3(Stats.AttackRange, Stats.AttackRange, 0f);
-
-        circleCollider.radius = Stats.ColliderRadius;
-        sqrAttackRange = Stats.AttackRange * Stats.AttackRange;
     }
 
     private void OnDestroy()
@@ -51,7 +60,7 @@ public class Turret : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isActive)
+        if(IsActive)
         {
             if(target != null)
             {
@@ -141,7 +150,7 @@ public class Turret : MonoBehaviour
     public void Activate()
     {
         Destroy(rgb);
-        isActive = true;
+        IsActive = true;
         rangeIndicator.SetActive(false);
     }
 

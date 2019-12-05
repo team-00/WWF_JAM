@@ -81,7 +81,7 @@ public class TrackManager : MonoBehaviour
 
     private int DeductHealth(TrashbagStats stats)
     {
-        int totalHealthReduc = 0;
+        int totalHealthReduc = 1;
         for(int i = 0; i < stats.ChildTrashbagStats.Length; i++)
         {
             totalHealthReduc += DeductHealth(stats.ChildTrashbagStats[i]);
