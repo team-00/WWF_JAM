@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# UNT0008: Unity objects should not use null propagation
+dotnet_diagnostic.UNT0008.severity = none
+
+# IDE0060: Remove unused parameter
+dotnet_code_quality_unused_parameters = all:none

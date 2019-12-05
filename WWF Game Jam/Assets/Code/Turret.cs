@@ -3,35 +3,40 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public Trashbag target;
     public TurretStats Stats;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] CircleCollider2D circleCollider;
     [SerializeField] Color invalidColor;
     [SerializeField] LayerMask trashLayer;
 
+    private SpriteRenderer spriteRenderer;
+    private CircleCollider2D circleCollider;
+    private Rigidbody2D rgb;
+
+    private GameObject rangeIndicator;
+    private float currentAttackTimer;
+    private float sqrAttackRange;
     private bool isActive;
     private int colCount;
-    private readonly List<Projectile> activeProjectiles = new List<Projectile>();
-    private readonly List<Projectile> pooledProjectiles = new List<Projectile>();
+    private readonly Queue<Projectile> pooledProjectiles = new Queue<Projectile>();
 
     private void Awake()
     {
+        rgb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        rangeIndicator = transform.GetChild(0).gameObject;
+        rangeIndicator.transform.localScale = new Vector3(Stats.AttackRange, Stats.AttackRange, 0f);
+
         circleCollider.radius = Stats.ColliderRadius;
+        sqrAttackRange = Stats.AttackRange * Stats.AttackRange;
     }
 
     private void OnDestroy()
     {
-        for(int i = 0; i < activeProjectiles.Count; i++)
+        while(pooledProjectiles.Count > 0)
         {
-            Destroy(activeProjectiles[i].gameObject);
+            Destroy(pooledProjectiles.Dequeue());
         }
-        for (int i = 0; i < pooledProjectiles.Count; i++)
-        {
-            Destroy(pooledProjectiles[i].gameObject);
-        }
-
-        activeProjectiles.Clear();
-        pooledProjectiles.Clear();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,23 +52,72 @@ public class Turret : MonoBehaviour
     {
         if(isActive)
         {
-            var collisions = Physics2D.OverlapCircleAll(transform.position, Stats.AttackRange, trashLayer);
-
-            Trashbag highestPriorityTrash = null;
-            float highestTrashProgress = 0f;
-            for (int i = 0; i < collisions.Length; i++)
+            if(target != null)
             {
-                Trashbag trash = collisions[i].GetComponent<Trashbag>();
-                if(trash.trackProgress > highestTrashProgress)
+                if ((transform.position - target.transform.position).sqrMagnitude > sqrAttackRange)
                 {
-                    highestTrashProgress = trash.trackProgress;
-                    highestPriorityTrash = trash;
+                    // release target lock and look for new target
+                    target = null;
+                    LookForTarget();
                 }
             }
-
-            if(highestPriorityTrash != null)
+            else
             {
-                transform.up = highestPriorityTrash.transform.position - transform.position;
+                LookForTarget();
+            }
+        }
+    }
+
+    private void Update()
+    {
+        // rotation towards target (move to update)
+        if (target != null)
+        {
+            transform.up = target.transform.position - transform.position;
+
+            if (currentAttackTimer < 0f)
+            {
+                Shoot();
+                currentAttackTimer = Stats.AttackSpeed;
+            }
+        }
+
+        currentAttackTimer -= Time.deltaTime;
+    }
+
+    private void Shoot()
+    {
+        Projectile proj;
+        if(pooledProjectiles.Count > 0)
+        {
+            proj = pooledProjectiles.Dequeue();
+            proj.transform.position = transform.position;
+            proj.transform.rotation = transform.rotation * Quaternion.Euler(0f, 0f, 90f);
+            proj.gameObject.SetActive(true);
+        }
+        else
+        {
+            proj = Instantiate(
+                Stats.ProjectilePrefab,
+                transform.position,
+                transform.rotation * Quaternion.Euler(0f, 0f, 90f));
+        }
+        proj.originTurret = this;
+        proj.MaxDist = Stats.AttackRange * 2;
+    }
+
+    private void LookForTarget()
+    {
+        var collisions = Physics2D.OverlapCircleAll(transform.position, Stats.AttackRange, trashLayer);
+
+        float highestTrashProgress = 0f;
+        for (int i = 0; i < collisions.Length; i++)
+        {
+            Trashbag trash = collisions[i].GetComponent<Trashbag>();
+            if (trash.trackProgress > highestTrashProgress)
+            {
+                highestTrashProgress = trash.trackProgress;
+                target = trash;
             }
         }
     }
@@ -84,6 +138,19 @@ public class Turret : MonoBehaviour
 
     public void Activate()
     {
+        Destroy(rgb);
         isActive = true;
+        rangeIndicator.SetActive(false);
+    }
+
+    public void SetRangeIndicatorActive(bool activeState)
+    {
+        rangeIndicator.SetActive(activeState);
+    }
+
+    public void PoolProjectile(Projectile projectile)
+    {
+        pooledProjectiles.Enqueue(projectile);
+        projectile.gameObject.SetActive(false);
     }
 }

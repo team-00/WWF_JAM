@@ -36,15 +36,33 @@ public class TrackManager : MonoBehaviour
 
     private void Update()
     {
+        MoveTrashbags();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            trashbags.Add(Instantiate(trashbag, GetTilemapPos(waypoints[0], 0f), Quaternion.identity).GetComponent<Trashbag>());
+        }
+    }
+
+    private void MoveTrashbags()
+    {
         Trashbag trashbag;
         float dt = Time.deltaTime;
-        for(int i = 0; i < trashbags.Count; i++)
+        for (int i = 0; i < trashbags.Count; i++)
         {
             trashbag = trashbags[i];
+
+            // remove trashbag if its been destroyed
+            if(trashbag == null)
+            {
+                trashbags.RemoveAt(i--);
+                continue;
+            }
+
             float actualProgress = curve.Evaluate(trashbag.trackProgress);
             int actualIndex = (int)actualProgress;
 
-            if(actualIndex + 2 > waypoints.Length)
+            if (actualIndex + 2 > waypoints.Length)
             {
                 DestroyTrashbag(trashbag, ref i);
                 continue;

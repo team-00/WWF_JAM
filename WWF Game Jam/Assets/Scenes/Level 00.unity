@@ -233,8 +233,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 940555997}
   cam: {fileID: 519420031}
-  turretPrefab: {fileID: 2686302434711171611, guid: 61f9e259b9893964ead06775617db6a6,
+  turretPrefab: {fileID: 2686302434711171591, guid: 61f9e259b9893964ead06775617db6a6,
     type: 3}
+  turretLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &450971775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +645,7 @@ GameObject:
   - component: {fileID: 940555997}
   - component: {fileID: 940555996}
   - component: {fileID: 940555998}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tilemap
   m_TagString: Tilemap
   m_Icon: {fileID: 0}
@@ -3238,7 +3241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036370956}
   - component: {fileID: 2036370955}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

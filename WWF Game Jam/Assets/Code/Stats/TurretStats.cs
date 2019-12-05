@@ -8,5 +8,7 @@ public class TurretStats : ScriptableObject
     public float TrackCollisionRadius;
 
     [Header("Combat Settings")]
+    public Projectile ProjectilePrefab;
     public float AttackRange;
+    public float AttackSpeed;
 }
