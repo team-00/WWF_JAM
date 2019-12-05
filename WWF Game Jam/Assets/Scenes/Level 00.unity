@@ -233,8 +233,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 940555997}
   cam: {fileID: 519420031}
-  turretPrefab: {fileID: 2686302434711171611, guid: 61f9e259b9893964ead06775617db6a6,
+  turretPrefab: {fileID: 2686302434711171591, guid: 61f9e259b9893964ead06775617db6a6,
     type: 3}
+  turretLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &450971775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowheadAngle: 20
   arrowheadLength: 0.3
-  trashbag: {fileID: 8583914889715831182, guid: f6c6db9015bbded44a95251d1d5d003f,
+  debugSpawnCount: 1
+  trashbagPrefab: {fileID: 7168380667356925239, guid: f6c6db9015bbded44a95251d1d5d003f,
     type: 3}
   waypoints:
   - {x: -10, y: -3}
@@ -284,7 +288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450971772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d90207695f03a5848b9ba38f453e7f4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 937cd4ce70184104483527183df19867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
@@ -642,7 +646,7 @@ GameObject:
   - component: {fileID: 940555997}
   - component: {fileID: 940555996}
   - component: {fileID: 940555998}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tilemap
   m_TagString: Tilemap
   m_Icon: {fileID: 0}
@@ -3238,7 +3242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036370956}
   - component: {fileID: 2036370955}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
