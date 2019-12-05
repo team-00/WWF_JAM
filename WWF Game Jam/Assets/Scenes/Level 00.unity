@@ -252,7 +252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowheadAngle: 20
   arrowheadLength: 0.3
-  trashbag: {fileID: 8583914889715831182, guid: f6c6db9015bbded44a95251d1d5d003f,
+  debugSpawnCount: 1
+  trashbagPrefab: {fileID: 7168380667356925239, guid: f6c6db9015bbded44a95251d1d5d003f,
     type: 3}
   waypoints:
   - {x: -10, y: -3}
@@ -287,7 +288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450971772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d90207695f03a5848b9ba38f453e7f4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 937cd4ce70184104483527183df19867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}

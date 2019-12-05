@@ -4,12 +4,18 @@
 public class TrashbagStats : ScriptableObject
 {
     [Header("Children on Destruction")]
-    public TrashbagStats ChildTrashbagStats;
-    public int ChildSpawnCount;
+    public TrashbagStats[] ChildTrashbagStats;
 
     [Header("Visuals")]
-    public Color TrashColor = Color.white;
+    public Sprite TrashSprite;
 
     [Header("Stats")]
-    public float ProgressionSpeed;
+    public float ProgressionSpeed = 1f;
+    public int Hitpoints = 1;
+
+    public virtual void ApplyStats(Trashbag trashbag)
+    {
+        trashbag.SpriteRenderer.sprite = TrashSprite;
+        trashbag.CurrentHitpoints = Hitpoints;
+    }
 }

@@ -3,6 +3,8 @@
 public class Projectile : MonoBehaviour
 {
     [HideInInspector] public Turret originTurret;
+    [HideInInspector] public int ID;
+    private static int currentFreeID = 0;
 
     public float MaxDist { set { timeToMaxDist = value / Stats.ProjectileSpeed; } }
 
@@ -12,7 +14,6 @@ public class Projectile : MonoBehaviour
     private int currentTrashKills;
     private float timeToMaxDist;
     private float currentTime;
-
 
     private void OnEnable()
     {
@@ -40,12 +41,15 @@ public class Projectile : MonoBehaviour
         {
             if(currentTrashKills < Stats.MaxTrashKills)
             {
-                Destroy(collisions[i].gameObject);
-                currentTrashKills++;
-
-                if (currentTrashKills == Stats.MaxTrashKills)
+                bool dmgApplied = collisions[i].GetComponent<Trashbag>().AttackTrashbag(this);
+                if(dmgApplied)
                 {
-                    DestroyProjectile();
+                    currentTrashKills++;
+
+                    if (currentTrashKills == Stats.MaxTrashKills)
+                    {
+                        DestroyProjectile();
+                    }
                 }
             }
             else
@@ -58,5 +62,10 @@ public class Projectile : MonoBehaviour
     private void DestroyProjectile()
     {
         originTurret.PoolProjectile(this);
+    }
+
+    public void ReassignID()
+    {
+        ID = currentFreeID++;
     }
 }

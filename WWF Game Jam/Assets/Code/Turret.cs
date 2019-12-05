@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public Trashbag target;
+    [HideInInspector] public Trashbag target;
+
     public TurretStats Stats;
     [SerializeField] Color invalidColor;
     [SerializeField] LayerMask trashLayer;
@@ -104,6 +105,7 @@ public class Turret : MonoBehaviour
         }
         proj.originTurret = this;
         proj.MaxDist = Stats.AttackRange * 2;
+        proj.ReassignID();
     }
 
     private void LookForTarget()

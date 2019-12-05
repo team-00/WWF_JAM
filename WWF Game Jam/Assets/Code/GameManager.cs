@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Tilemaps;
 using UnityEngine;
 
-[RequireComponent(typeof(TrackManager), typeof(TurretPlacer))]
+[RequireComponent(typeof(TrackManager), typeof(TurretManager))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
@@ -10,13 +10,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LayerMask turretLayer;
 
     private TilemapCollider2D tilemapCollider;
-    private TurretPlacer turretPlacer;
+    private TurretManager turretPlacer;
     private Turret lastHoveredTurret;
 
     private void Awake()
     {
         tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
-        turretPlacer = GetComponent<TurretPlacer>();
+        turretPlacer = GetComponent<TurretManager>();
     }
 
     private void Update()

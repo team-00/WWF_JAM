@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b37ca2ca472594dafec01d5ac1893b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: a822c8fe1a3fbda408d2d9b98d4244b6, type: 2}
   trackProgress: 0
+  TrackManager: {fileID: 0}
+  SpriteRenderer: {fileID: 8583914889715831183}
+  stats: {fileID: 11400000, guid: b3ccd44c49f2031408bf204d0dd31560, type: 2}
 --- !u!212 &8583914889715831183
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85,12 +87,12 @@ SpriteRenderer:
   m_SortingLayerID: -1664636433
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aeeb8da018c2925478774cd4950fb44b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cd4f699da1a56124b8cae2d182afaf45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.38, y: 4.5}
+  m_Size: {x: 10.37, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
