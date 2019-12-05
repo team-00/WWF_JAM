@@ -15,9 +15,13 @@ public class TrackManager : MonoBehaviour
 
     public float trackLength;
     private readonly List<Trashbag> trashbags = new List<Trashbag>();
+    private GameManager gm;
 
     private void Awake()
     {
+        gm = GetComponent<GameManager>();
+
+        // calc track length
         trackLength = 0f;
         for(int i = 0; i < waypoints.Length - 1; )
         {
@@ -26,6 +30,7 @@ public class TrackManager : MonoBehaviour
         }
         curve.AddKey(new Keyframe(trackLength, waypoints.Length - 1, 0f, 0f, 0f, 0f));
 
+        // debug trashbag
         CreateTrashbag();
     }
 
@@ -57,8 +62,10 @@ public class TrackManager : MonoBehaviour
             float actualProgress = curve.Evaluate(trashbag.trackProgress);
             int actualIndex = (int)actualProgress;
 
+            // check if trash reached the end
             if (actualIndex + 2 > waypoints.Length)
             {
+                gm.Health -= DeductHealth(trashbag.Stats);
                 DestroyTrashbag(trashbag, ref i);
                 continue;
             }
@@ -70,6 +77,16 @@ public class TrackManager : MonoBehaviour
 
             trashbag.trackProgress += trashbag.Stats.ProgressionSpeed * dt;
         }
+    }
+
+    private int DeductHealth(TrashbagStats stats)
+    {
+        int totalHealthReduc = 0;
+        for(int i = 0; i < stats.ChildTrashbagStats.Length; i++)
+        {
+            totalHealthReduc += DeductHealth(stats.ChildTrashbagStats[i]);
+        }
+        return totalHealthReduc;
     }
 
     private void DestroyTrashbag(Trashbag trashbag, ref int i)

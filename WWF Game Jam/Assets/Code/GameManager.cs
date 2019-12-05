@@ -4,6 +4,28 @@ using UnityEngine;
 [RequireComponent(typeof(TrackManager), typeof(TurretManager))]
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int currentHealth;
+    public int Health
+    {
+        get => currentHealth;
+        set
+        {
+            currentHealth = value;
+            // TODO update ui
+        }
+    }
+
+    private int currentGold;
+    public int Gold
+    {
+        get => currentGold;
+        set
+        {
+            currentGold = value;
+            // TODO update ui
+        }
+    }
+
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Camera cam;
     [SerializeField] private Turret turretPrefab;
@@ -17,6 +39,8 @@ public class GameManager : MonoBehaviour
     {
         tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
         turretPlacer = GetComponent<TurretManager>();
+
+        Health = currentHealth;
     }
 
     private void Update()

@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+public enum TurretType
+{
+    Default
+}
+
 [RequireComponent(typeof(GameManager))]
 public class TurretManager : MonoBehaviour
 {
@@ -51,5 +56,24 @@ public class TurretManager : MonoBehaviour
                 CurTurret = null;
             }
         }
+    }
+
+    public void RequestTurretPlacement(TurretType type)
+    {
+        // check monies
+        // suck dick
+        // ocean man
+        switch(type)
+        {
+            case TurretType.Default:
+
+                break;
+
+        }
+    }
+
+    public string[] GetTurretInfo(TurretType type)
+    {
+        return null;
     }
 }

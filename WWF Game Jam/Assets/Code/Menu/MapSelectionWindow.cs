@@ -52,7 +52,7 @@ public class MapSelectionWindow : WindowBase
 
     public void StartGame()
     {
-        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
 
         Debug.Log("Start Game: Level "+ (currentSelected +1));
     }

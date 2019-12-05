@@ -22,8 +22,7 @@ public class ExitWindow : WindowBase
 
     public void BackToMenu()
     {
-        //SceneManager.LoadScene(0);
-        Debug.Log("BackToMenu");
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()

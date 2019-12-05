@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     private UIState currentUIState;
 
     [SerializeField]
+    private TurretManager turretManager;
+    [SerializeField]
     private MainUIWindow muiWindow;
     [SerializeField]
     private InfoWindow iWindow;
@@ -66,20 +68,21 @@ public class UIManager : MonoBehaviour
 
     public void SpawnTurret(int id)
     {
-        //spawn turret based on id (0-3)
-        Debug.Log("Spawn Turret:" + id);
+        turretManager.RequestTurretPlacement((TurretType)id);
     }
 
     public void OpenGeneralTurretInfo(int id)
     {
         ChangeMenuState(2);
-        //Based on id (0-3)
+        var wndInfo = turretManager.GetTurretInfo((TurretType)id);
+        // TODO make <name> + <info> on turretStats
         iWindow.SetUp("Firemage Panda-"+ id, "The Firemage Panda is a super efficient single target turret with medium attackspeed and cool looking attacks.\n\nAlso: Jan sucks");
+        //iWindow.SetUp(wndInfo[0], wndInfo[1]);
     }
 
     public void StartNextRound()
     {
         Debug.Log("Start next Round");
-        //Start next round
+        // TODO wave manager next round
     }
 }
