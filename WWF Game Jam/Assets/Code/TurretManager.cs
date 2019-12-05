@@ -10,6 +10,8 @@ public class TurretManager : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private float turretPlacementCooldown;
+    [SerializeField] private Turret turretPrefab;
+    [SerializeField] private TurretStats[] turretStats;
 
     [HideInInspector] public Turret CurTurret;
     private GameManager gm;
@@ -28,7 +30,13 @@ public class TurretManager : MonoBehaviour
 
     private void Update()
     {
-        if(currentTurretPlacementCooldown > 0f)
+        if (Input.GetKeyDown(KeyCode.G) && CurTurret == null)
+        {
+            RequestTurretPlacement(TurretType.Default);
+        }
+
+
+        if (currentTurretPlacementCooldown > 0f)
         {
             currentTurretPlacementCooldown -= Time.deltaTime;
         }
@@ -63,10 +71,13 @@ public class TurretManager : MonoBehaviour
         // check monies
         // suck dick
         // ocean man
-        switch(type)
+
+        switch (type)
         {
             case TurretType.Default:
-
+                Turret go = Instantiate(turretPrefab, Input.mousePosition, Quaternion.identity);
+                go.Stats = turretStats[(int)type];
+                EnterPlacementMode(go);
                 break;
 
         }

@@ -11,4 +11,9 @@ public class TurretStats : ScriptableObject
     public Projectile ProjectilePrefab;
     public float AttackRange;
     public float AttackSpeed;
+
+    public virtual void ApplyStats(Turret turret)
+    {
+
+    }
 }

@@ -165,10 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7401370cde83c12419fb0f5d266d3ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 200
+  ui: {fileID: 739233899}
   tilemap: {fileID: 940555997}
   cam: {fileID: 519420031}
-  turretPrefab: {fileID: 2686302434711171591, guid: 61f9e259b9893964ead06775617db6a6,
-    type: 3}
   turretLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -227,6 +227,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   turretPlacementCooldown: 0.1
+  turretPrefab: {fileID: 2686302434711171591, guid: 61f9e259b9893964ead06775617db6a6,
+    type: 3}
+  turretStats:
+  - {fileID: 11400000, guid: ff50bea46ee68f742ad0fd5ffc166be4, type: 2}
   CurTurret: {fileID: 0}
 --- !u!20 &519420031 stripped
 Camera:
@@ -234,6 +238,18 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 3715674105243694479}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &739233899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1905146973981400085, guid: 760484300c0423d4f9d2ebad7c472c89,
+    type: 3}
+  m_PrefabInstance: {fileID: 1514533319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6ce2f6870df68439b693cb84ce2393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940555994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,6 +4086,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1905146973981400084, guid: 760484300c0423d4f9d2ebad7c472c89,
+        type: 3}
+      propertyPath: turretManager
+      value: 
+      objectReference: {fileID: 450971776}
     - target: {fileID: 1905146974646821039, guid: 760484300c0423d4f9d2ebad7c472c89,
         type: 3}
       propertyPath: m_textInfo.characterCount
