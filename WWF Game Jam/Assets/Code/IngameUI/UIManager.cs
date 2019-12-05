@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum UIState { STANDARD, OPTIONS, INFO, EXIT }
 
@@ -84,5 +85,11 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Start next Round");
         // TODO wave manager next round
+    }
+
+    public void ReloadLevel()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

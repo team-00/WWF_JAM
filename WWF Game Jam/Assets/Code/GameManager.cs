@@ -13,7 +13,11 @@ public class GameManager : MonoBehaviour
         {
             currentHealth = value;
             ui.UpdateHeath(currentHealth);
-            // TODO check if game over
+            if(currentHealth < 1)
+            {
+                Time.timeScale = 0f;
+                ui.ActivateFailureWindow();
+            }
         }
     }
 

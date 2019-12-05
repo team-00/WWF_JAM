@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainUIWindow : WindowBase
 {
+    [SerializeField]
+    private GameObject failureWindow;
     [SerializeField]
     private Button[] buttons;
     [SerializeField]
@@ -134,5 +134,10 @@ public class MainUIWindow : WindowBase
     public void UpdateCoin(int coins)
     {
         coinText.text = coins + " $";
+    }
+
+    public void ActivateFailureWindow()
+    {
+        failureWindow.SetActive(true);
     }
 }
