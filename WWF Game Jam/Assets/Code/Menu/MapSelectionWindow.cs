@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MapSelectionWindow : MenuWindow
+public class MapSelectionWindow : WindowBase
 {
     [SerializeField]
     private TickBox[] levelSelections;

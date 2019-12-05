@@ -8,9 +8,9 @@ public class TickBox : MonoBehaviour
     public Image TickIcon;
 
     private int boxId = 0;
-    private MenuWindow parent;
+    private WindowBase parent;
 
-    public void Initialize(int boxId, MenuWindow parent, bool startTicked)
+    public void Initialize(int boxId, WindowBase parent, bool startTicked)
     {
         this.boxId = boxId;
         this.parent = parent;

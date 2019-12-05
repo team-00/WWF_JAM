@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MenuWindow : MonoBehaviour
+public abstract class WindowBase : MonoBehaviour
 {
     public abstract void Disable();
     public abstract void Enable();

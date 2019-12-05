@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ExitWindow : MenuWindow
+public class ExitWindow : WindowBase
 {
     public override void Disable()
     {
@@ -17,6 +18,12 @@ public class ExitWindow : MenuWindow
     public override void TickBox(bool on, int boxID)
     {
         throw new System.NotImplementedException();
+    }
+
+    public void BackToMenu()
+    {
+        //SceneManager.LoadScene(0);
+        Debug.Log("BackToMenu");
     }
 
     public void QuitGame()
