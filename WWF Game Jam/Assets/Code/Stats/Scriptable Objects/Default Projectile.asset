@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f611fbc0d9d644c9236b3b2c8d88b1, type: 3}
-  m_Name: Default Turret
+  m_Script: {fileID: 11500000, guid: 094331e3a84ba034a92e7e92a9bc2fa6, type: 3}
+  m_Name: Default Projectile
   m_EditorClassIdentifier: 
-  ColliderRadius: 0.4
-  TrackCollisionRadius: 0.2
-  AttackRange: 3
+  ProjectileSpeed: 20
+  CollisionRadius: 0.25
+  MaxTrashKills: 2
+  TrashDamage: 1

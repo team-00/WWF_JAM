@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class TrackManager : MonoBehaviour
 {
@@ -13,10 +8,10 @@ public class TrackManager : MonoBehaviour
     [SerializeField] private float arrowheadLength = .3f;
 
     [Header("Track Fields")]
-    [SerializeField] private GameObject trashbag;
+    [SerializeField] private int debugSpawnCount;
+    [SerializeField] private Trashbag trashbagPrefab;
     [SerializeField] private Vector2[] waypoints;
     public AnimationCurve curve;
-
 
     public float trackLength;
     private readonly List<Trashbag> trashbags = new List<Trashbag>();
@@ -31,20 +26,38 @@ public class TrackManager : MonoBehaviour
         }
         curve.AddKey(new Keyframe(trackLength, waypoints.Length - 1, 0f, 0f, 0f, 0f));
 
-        trashbags.Add(Instantiate(trashbag, GetTilemapPos(waypoints[0], 0f), Quaternion.identity).GetComponent<Trashbag>());
+        CreateTrashbag();
     }
 
     private void Update()
     {
+        MoveTrashbags();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < debugSpawnCount; i++) CreateTrashbag();
+        }
+    }
+
+    private void MoveTrashbags()
+    {
         Trashbag trashbag;
         float dt = Time.deltaTime;
-        for(int i = 0; i < trashbags.Count; i++)
+        for (int i = 0; i < trashbags.Count; i++)
         {
             trashbag = trashbags[i];
+
+            // remove trashbag if its been destroyed
+            if(trashbag == null)
+            {
+                trashbags.RemoveAt(i--);
+                continue;
+            }
+
             float actualProgress = curve.Evaluate(trashbag.trackProgress);
             int actualIndex = (int)actualProgress;
 
-            if(actualIndex + 2 > waypoints.Length)
+            if (actualIndex + 2 > waypoints.Length)
             {
                 DestroyTrashbag(trashbag, ref i);
                 continue;
@@ -55,7 +68,7 @@ public class TrackManager : MonoBehaviour
                 actualProgress - actualIndex);
             trashbag.transform.position = GetTilemapPos(resultPos, 0f);
 
-            trashbag.trackProgress += trashbag.stats.ProgressionSpeed * dt;
+            trashbag.trackProgress += trashbag.Stats.ProgressionSpeed * dt;
         }
     }
 
@@ -63,6 +76,21 @@ public class TrackManager : MonoBehaviour
     {
         trashbags.RemoveAt(i--);
         Destroy(trashbag.gameObject);
+    }
+
+    public Trashbag CreateTrashbag(TrashbagStats stats = null)
+    {
+        Trashbag bag = Instantiate(trashbagPrefab, GetTilemapPos(waypoints[0], 0f), Quaternion.identity);
+        AddTrashbag(bag);
+        bag.TrackManager = this;
+        if (stats != null) bag.Stats = stats;
+        else bag.Stats.ApplyStats(bag);
+        return bag;
+    }
+
+    public void AddTrashbag(Trashbag trashbag)
+    {
+        trashbags.Add(trashbag);
     }
 
     public static Vector2 GetTilemapPos(float x, float y)

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(GameManager))]
-public class TurretPlacer : MonoBehaviour
+public class TurretManager : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private float turretPlacementCooldown;

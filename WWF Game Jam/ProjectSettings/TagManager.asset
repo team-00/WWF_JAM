@@ -17,8 +17,8 @@ TagManager:
   - PostProcessing
   - Trash
   - Turrets
-  - 
-  - 
+  - Environment
+  - Projectiles
   - 
   - 
   - 
@@ -41,4 +41,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Environment
+    uniqueID: 2354046045
+    locked: 0
+  - name: Range Indicator
+    uniqueID: 475859745
+    locked: 0
+  - name: Projectile
+    uniqueID: 3548991987
+    locked: 0
+  - name: Trash
+    uniqueID: 2630330863
+    locked: 0
+  - name: Turret
+    uniqueID: 2637610831
     locked: 0
