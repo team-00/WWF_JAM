@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb4adb728b5dc5b409bbc8b6c52a6631, type: 2}
   - {fileID: 11400000, guid: eb4adb728b5dc5b409bbc8b6c52a6631, type: 2}
   TrashSprite: {fileID: 21300000, guid: cd4f699da1a56124b8cae2d182afaf45, type: 3}
-  ProgressionSpeed: 10
-  Hitpoints: 8
+  ProgressionSpeed: 1
+  Hitpoints: 20

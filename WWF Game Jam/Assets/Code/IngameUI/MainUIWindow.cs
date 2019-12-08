@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class MainUIWindow : WindowBase
 {
     [SerializeField]
+    private GameManager gm;
+    [SerializeField]
     private GameObject failureWindow;
     [SerializeField]
     private Button[] buttons;
@@ -29,6 +31,7 @@ public class MainUIWindow : WindowBase
     [SerializeField]
     private TickBox[] attackModeSelection;
 
+    private Turret currentDisplayedTurretInfo = null;
     private int maxhealth;
 
     private int currentAttackMode = 0;
@@ -59,12 +62,13 @@ public class MainUIWindow : WindowBase
         }
     }
 
-    public void OpenPlacedTurretInfo(string name, int sellValue, int attackMode, Sprite icon)
+    public void OpenPlacedTurretInfo(Turret turret)
     {
-        turretImage.sprite = icon;
-        turretName.text = name;
-        turretSellValue.text = sellValue + " $";
-        currentAttackMode = attackMode;
+        currentDisplayedTurretInfo = turret;
+        turretImage.sprite = turret.Stats.ShopSprite;
+        turretName.text = turret.Stats.name;
+        turretSellValue.text = turret.Stats.TurretSellPrice + " $";
+        currentAttackMode = turret.TargetMode;
 
         for (int boxID = 0; boxID < attackModeSelection.Length; boxID++)
         {
@@ -75,6 +79,7 @@ public class MainUIWindow : WindowBase
 
     public void ClosePlacedTurretInfo()
     {
+        currentDisplayedTurretInfo = null;
         turretHoverPanel.SetActive(false);
         for (int boxID = 0; boxID < attackModeSelection.Length; boxID++)
         {
@@ -98,27 +103,49 @@ public class MainUIWindow : WindowBase
         }
     }
 
-    public void SetUI(int[] turretCosts, int maxhealth, int health, int coins, Sprite[] turretSprites)
+    public void SetUI(int maxhealth, int health, int coins, TurretStats[] turrets)
     {
         this.maxhealth = maxhealth;
         UpdateUI(health, coins);
 
         for (int i = 0; i < turretCostTexts.Length; i++)
         {
-            if (i < turretCosts.Length)
-                turretCostTexts[i].text = turretCosts[i] + " $";
+            if (i < turrets.Length)
+                turretCostTexts[i].text = turrets[i].TurretPrice + " $";
             else
                 turretCostTexts[i].text = emptyTurretMessage;
         }
 
         for (int i = 0; i < turretImages.Length; i++)
         {
-            if (i < turretSprites.Length)
-                turretImages[i].sprite = turretSprites[i];
+            if (i < turrets.Length)
+                turretImages[i].sprite = turrets[i].ShopSprite;
             else
                 turretImages[i].sprite = emptyTurretSprite;
         }
     }
+
+    //public void SetUI(int[] turretCosts, int maxhealth, int health, int coins, Sprite[] turretSprites)
+    //{
+    //    this.maxhealth = maxhealth;
+    //    UpdateUI(health, coins);
+
+    //    for (int i = 0; i < turretCostTexts.Length; i++)
+    //    {
+    //        if (i < turretCosts.Length)
+    //            turretCostTexts[i].text = turretCosts[i] + " $";
+    //        else
+    //            turretCostTexts[i].text = emptyTurretMessage;
+    //    }
+
+    //    for (int i = 0; i < turretImages.Length; i++)
+    //    {
+    //        if (i < turretSprites.Length)
+    //            turretImages[i].sprite = turretSprites[i];
+    //        else
+    //            turretImages[i].sprite = emptyTurretSprite;
+    //    }
+    //}
 
     public void UpdateUI(int health, int coins)
     {
@@ -139,5 +166,23 @@ public class MainUIWindow : WindowBase
     public void ActivateFailureWindow()
     {
         failureWindow.SetActive(true);
+    }
+
+    public void SetTargetMode(int mode)
+    {
+        if(currentDisplayedTurretInfo != null)
+        {
+            currentDisplayedTurretInfo.TargetMode = mode;
+        }
+    }
+
+    public void SellTurret()
+    {
+        if (currentDisplayedTurretInfo != null)
+        {
+            gm.Gold += currentDisplayedTurretInfo.Stats.TurretSellPrice;
+            Destroy(currentDisplayedTurretInfo.gameObject);
+            ClosePlacedTurretInfo();
+        }
     }
 }

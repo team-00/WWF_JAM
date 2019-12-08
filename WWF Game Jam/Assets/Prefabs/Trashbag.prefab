@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b37ca2ca472594dafec01d5ac1893b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentHitpoints: 1
   trackProgress: 0
   TrackManager: {fileID: 0}
   SpriteRenderer: {fileID: 8583914889715831183}
-  stats: {fileID: 11400000, guid: b3ccd44c49f2031408bf204d0dd31560, type: 2}
+  stats: {fileID: 11400000, guid: b94f1424a24488447b4f5f2e8029c60c, type: 2}
 --- !u!212 &8583914889715831183
 SpriteRenderer:
   m_ObjectHideFlags: 0
