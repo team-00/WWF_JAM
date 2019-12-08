@@ -17,8 +17,8 @@ MonoBehaviour:
   TurretSprite: {fileID: 21300000, guid: f2957a06c61cab348b9aec5f0a891cab, type: 3}
   ShopSprite: {fileID: 21300000, guid: 0af3245680377304eb473fd079c7a382, type: 3}
   ProjectileStats: {fileID: 11400000, guid: c68ab19ab1a346f47a297899a796cf2b, type: 2}
-  AttackRange: 2
-  AttackSpeed: 0.25
-  TurretPrice: 200
-  TurretSellPrice: 150
+  AttackRange: 1.5
+  AttackSpeed: 0.5
+  TurretPrice: 125
+  TurretSellPrice: 75
   TurretInfo: High attack speed, but low range.

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 560671d077321b4478682705f2864162, type: 3}
-  m_Name: Wave 2
+  m_Name: Wave 25
   m_EditorClassIdentifier: 
   TrashbagMobs:
-  - Trashbag: {fileID: 11400000, guid: a34864b5cd6893c48a75d456feb69284, type: 2}
-    Count: 35
-    spawnFrequency: 0.4
+  - Trashbag: {fileID: 11400000, guid: a822c8fe1a3fbda408d2d9b98d4244b6, type: 2}
+    Count: 1000
+    spawnFrequency: 0.2

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 200
-  currentGold: 500
+  currentGold: 200
   ui: {fileID: 739233899}
   tilemap: {fileID: 940555997}
   cam: {fileID: 519420031}
@@ -257,6 +257,30 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 04d3a2bc3ba5de44a8dfe950d5ad43e2, type: 2}
   - {fileID: 11400000, guid: 701c76476b74a454c84542d92e091e20, type: 2}
   - {fileID: 11400000, guid: 3ed14ddb9f725f14282862a74d2eb9e7, type: 2}
+  - {fileID: 11400000, guid: 46212f82d5cb2764f986a70de35a7486, type: 2}
+  - {fileID: 11400000, guid: 70341d67faea7754d89644066a3e6e60, type: 2}
+  - {fileID: 11400000, guid: 6f59544be89ad4e4fb7b0f6d57910182, type: 2}
+  - {fileID: 11400000, guid: e3364147639f88c41974fdcd4a6ec6f3, type: 2}
+  - {fileID: 11400000, guid: d1a4c79822c01744d8d9c480c6fed176, type: 2}
+  - {fileID: 11400000, guid: 2163a42a24f4b484f9ee6b3c0d04e4b4, type: 2}
+  - {fileID: 11400000, guid: a13c7cad9fd445946814f2f4626cebfc, type: 2}
+  - {fileID: 11400000, guid: 5ffef146ca1c1b94788bc85faca2bad6, type: 2}
+  - {fileID: 11400000, guid: 7b8281c9286776e489c15aac311f4567, type: 2}
+  - {fileID: 11400000, guid: 40351e68fb283f74996b097dc03b1529, type: 2}
+  - {fileID: 11400000, guid: e5992b5e778fb4944afbf1660c48e26b, type: 2}
+  - {fileID: 11400000, guid: a22bfc63ff15ed640b8e998ee53170f6, type: 2}
+  - {fileID: 11400000, guid: 60ebcd7ae33f0d94eb24b10deffbb6d6, type: 2}
+  - {fileID: 11400000, guid: 5618357342d21d2478b0d82a36585cff, type: 2}
+  - {fileID: 11400000, guid: 5151851d3ce86f240ae4ef00e0f0c7c2, type: 2}
+  - {fileID: 11400000, guid: 178bacfcf547e1a4bb86d94ca5d1e1d0, type: 2}
+  - {fileID: 11400000, guid: 9ddc43ae17d5c34419630ea297a89a5f, type: 2}
+  - {fileID: 11400000, guid: 3443f0df293666442900ab828b61ac40, type: 2}
+  - {fileID: 11400000, guid: fa34aeee772bc224b96a195e552ccf0c, type: 2}
+  - {fileID: 11400000, guid: e9441284719cb1d4db2f421e2dfe9195, type: 2}
+  - {fileID: 11400000, guid: 0bab38b202abacf4fb33b8ab6500bcfe, type: 2}
+  - {fileID: 11400000, guid: 61914ff41a9223747beb52d5ab67c522, type: 2}
+  - {fileID: 11400000, guid: 9d1dc67cddbeaea4985bbaed355098ea, type: 2}
+  - {fileID: 11400000, guid: 92f2c79ad3d33eb4fa5ff7940b0d2bd7, type: 2}
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3715674105490394608, guid: 41cfb3589f28b5e41a3a0dadb2447402,
