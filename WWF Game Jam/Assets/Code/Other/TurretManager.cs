@@ -32,12 +32,6 @@ public class TurretManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            RequestTurretPlacement(0);
-        }
-
-
         if (currentTurretPlacementCooldown > 0f)
         {
             currentTurretPlacementCooldown -= Time.deltaTime;
@@ -60,6 +54,7 @@ public class TurretManager : MonoBehaviour
                 CurTurret = null;
 
                 currentTurretPlacementCooldown = turretPlacementCooldown;
+                AudioManager.PlayMoneySound();
             }
             else if(Input.GetMouseButtonDown(1))
             {

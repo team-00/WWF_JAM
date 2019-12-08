@@ -160,11 +160,12 @@ public class MainUIWindow : WindowBase
     }
     public void UpdateCoin(int coins)
     {
-        coinText.text = coins + " $";
+        coinText.text = coins + "$";
     }
 
     public void ActivateFailureWindow()
     {
+        AudioManager.PlayFailureSound();
         failureWindow.SetActive(true);
     }
 
@@ -173,6 +174,7 @@ public class MainUIWindow : WindowBase
         if(currentDisplayedTurretInfo != null)
         {
             currentDisplayedTurretInfo.TargetMode = mode;
+            AudioManager.PlayButtonSound();
         }
     }
 
@@ -183,6 +185,7 @@ public class MainUIWindow : WindowBase
             gm.Gold += currentDisplayedTurretInfo.Stats.TurretSellPrice;
             Destroy(currentDisplayedTurretInfo.gameObject);
             ClosePlacedTurretInfo();
+            AudioManager.PlayMoneySound();
         }
     }
 }

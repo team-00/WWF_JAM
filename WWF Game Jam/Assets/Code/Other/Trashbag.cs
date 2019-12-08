@@ -28,6 +28,7 @@ public class Trashbag : MonoBehaviour
             Trashbag trashbag = TrackManager.CreateTrashbag(Stats.ChildTrashbagStats[i]);
             trashbag.trackProgress = trackProgress - i * .2f;
         }
+        AudioManager.PlayTrashbagExplosionSound();
         Destroy(gameObject);
     }
 

@@ -74,5 +74,6 @@ public class MenuManager : MonoBehaviour
         }
 
         currentMenuState = (MenuState)newState;
+        AudioManager.PlayButtonSound();
     }
 }

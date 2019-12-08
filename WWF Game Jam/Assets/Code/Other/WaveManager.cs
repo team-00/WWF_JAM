@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gm;
     [SerializeField] private TrackManager trackManager;
+    [SerializeField] private int goldPerRound;
     [SerializeField] private WaveInfo[] waves;
 
     private int currentWave = 0;
@@ -12,6 +14,8 @@ public class WaveManager : MonoBehaviour
     {
         StartCoroutine(WaveHandler());
 
+        gm.Gold += goldPerRound;
+        AudioManager.PlayButtonSound();
     }
 
     private IEnumerator WaveHandler()
