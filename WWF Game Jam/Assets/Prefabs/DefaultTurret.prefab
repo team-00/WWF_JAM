@@ -128,11 +128,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  Stats: {fileID: 11400000, guid: ff50bea46ee68f742ad0fd5ffc166be4, type: 2}
+  IsActive: 0
+  TargetMode: 0
   invalidColor: {r: 1, g: 0, b: 0, a: 0.4}
   trashLayer:
     serializedVersion: 2
     m_Bits: 512
+  projectilePrefab: {fileID: 4389095326998545708, guid: bb5f98abef0c0ed40b03e34054e1d7d9,
+    type: 3}
+  SpriteRenderer: {fileID: 2686302434711171588}
 --- !u!212 &2686302434711171588
 SpriteRenderer:
   m_ObjectHideFlags: 0

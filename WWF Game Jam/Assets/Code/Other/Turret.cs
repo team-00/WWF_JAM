@@ -4,7 +4,9 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     [HideInInspector] public Trashbag target;
+    [HideInInspector] public GameManager gm;
     [HideInInspector] public bool IsActive;
+    [HideInInspector] public int TargetMode = 0;
 
     private TurretStats stats;
     public TurretStats Stats
@@ -22,8 +24,9 @@ public class Turret : MonoBehaviour
     }
     [SerializeField] Color invalidColor;
     [SerializeField] LayerMask trashLayer;
+    [SerializeField] Projectile projectilePrefab;
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer SpriteRenderer;
     private CircleCollider2D circleCollider;
     private Rigidbody2D rgb;
 
@@ -36,7 +39,6 @@ public class Turret : MonoBehaviour
     private void Awake()
     {
         rgb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
         rangeIndicator = transform.GetChild(0).gameObject;
     }
@@ -107,28 +109,53 @@ public class Turret : MonoBehaviour
         }
         else
         {
-            proj = Instantiate(
-                Stats.ProjectilePrefab,
-                transform.position,
-                transform.rotation * Quaternion.Euler(0f, 0f, 90f));
+            proj = CreateNewProjectile();
         }
-        proj.originTurret = this;
         proj.MaxDist = Stats.AttackRange * 2;
         proj.ReassignID();
+        proj.ResetProjectile();
+    }
+
+    private Projectile CreateNewProjectile()
+    {
+        Projectile proj = Instantiate(
+                projectilePrefab,
+                transform.position,
+                transform.rotation * Quaternion.Euler(0f, 0f, 90f));
+        proj.Stats = stats.ProjectileStats;
+        proj.originTurret = this;
+        proj.gm = gm;
+        return proj;
     }
 
     private void LookForTarget()
     {
         var collisions = Physics2D.OverlapCircleAll(transform.position, Stats.AttackRange, trashLayer);
 
-        float highestTrashProgress = 0f;
-        for (int i = 0; i < collisions.Length; i++)
+        if(TargetMode == 0)
         {
-            Trashbag trash = collisions[i].GetComponent<Trashbag>();
-            if (trash.trackProgress > highestTrashProgress)
+            float highestTrashProgress = 0f;
+            for (int i = 0; i < collisions.Length; i++)
             {
-                highestTrashProgress = trash.trackProgress;
-                target = trash;
+                Trashbag trash = collisions[i].GetComponent<Trashbag>();
+                if (trash.trackProgress > highestTrashProgress)
+                {
+                    highestTrashProgress = trash.trackProgress;
+                    target = trash;
+                }
+            }
+        }
+        else if(TargetMode == 1)
+        {
+            float highestTrashProgress = float.MaxValue;
+            for (int i = 0; i < collisions.Length; i++)
+            {
+                Trashbag trash = collisions[i].GetComponent<Trashbag>();
+                if (trash.trackProgress < highestTrashProgress)
+                {
+                    highestTrashProgress = trash.trackProgress;
+                    target = trash;
+                }
             }
         }
     }
@@ -137,12 +164,12 @@ public class Turret : MonoBehaviour
     {
         if(valid && colCount == 0)
         {
-            spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
             return true;
         }
         else
         {
-            spriteRenderer.color = invalidColor;
+            SpriteRenderer.color = invalidColor;
             return false;
         }
     }
@@ -152,6 +179,11 @@ public class Turret : MonoBehaviour
         Destroy(rgb);
         IsActive = true;
         rangeIndicator.SetActive(false);
+
+        for(int i = 0; i < (int)(1f / stats.AttackSpeed); i++)
+        {
+            PoolProjectile(CreateNewProjectile());
+        }
     }
 
     public void SetRangeIndicatorActive(bool activeState)
@@ -161,7 +193,8 @@ public class Turret : MonoBehaviour
 
     public void PoolProjectile(Projectile projectile)
     {
-        pooledProjectiles.Enqueue(projectile);
-        projectile.gameObject.SetActive(false);
+        Destroy(projectile.gameObject);
+        //pooledProjectiles.Enqueue(projectile);
+        //projectile.gameObject.SetActive(false);
     }
 }

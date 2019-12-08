@@ -3,6 +3,7 @@
 public class Projectile : MonoBehaviour
 {
     [HideInInspector] public Turret originTurret;
+    [HideInInspector] public GameManager gm;
     [HideInInspector] public int ID;
     private static int currentFreeID = 0;
 
@@ -15,7 +16,7 @@ public class Projectile : MonoBehaviour
     private float timeToMaxDist;
     private float currentTime;
 
-    private void OnEnable()
+    public void ResetProjectile()
     {
         currentTrashKills = 0;
         currentTime = 0f;
@@ -39,22 +40,17 @@ public class Projectile : MonoBehaviour
         var collisions = Physics2D.OverlapCircleAll(transform.position, Stats.CollisionRadius, trashLayer);
         for(int i = 0; i < collisions.Length; i++)
         {
-            if(currentTrashKills < Stats.MaxTrashKills)
+            bool dmgApplied = collisions[i].GetComponent<Trashbag>().AttackTrashbag(this);
+            if (dmgApplied)
             {
-                bool dmgApplied = collisions[i].GetComponent<Trashbag>().AttackTrashbag(this);
-                if(dmgApplied)
-                {
-                    currentTrashKills++;
+                currentTrashKills++;
+                gm.Gold++;
 
-                    if (currentTrashKills == Stats.MaxTrashKills)
-                    {
-                        DestroyProjectile();
-                    }
+                if (currentTrashKills >= Stats.MaxTrashKills)
+                {
+                    DestroyProjectile();
+                    break;
                 }
-            }
-            else
-            {
-                DestroyProjectile();
             }
         }
     }

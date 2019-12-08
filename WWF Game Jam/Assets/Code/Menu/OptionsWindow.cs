@@ -6,11 +6,13 @@ public class OptionsWindow : WindowBase
 {
     public override void Disable()
     {
+        Time.timeScale = 1.0f;
         gameObject.SetActive(false);
     }
 
     public override void Enable()
     {
+        Time.timeScale = 0.0f;
         gameObject.SetActive(true);
     }
 

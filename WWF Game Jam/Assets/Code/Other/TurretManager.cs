@@ -20,19 +20,21 @@ public class TurretManager : MonoBehaviour
     private void Awake()
     {
         gm = GetComponent<GameManager>();
+
+        gm.ui.SetUI(gm.Health, gm.Health, gm.Gold, turretStats);
     }
 
     public void EnterPlacementMode(Turret turret)
     {
-        if (CurTurret != null || currentTurretPlacementCooldown > 0f) return;
+        if (CurTurret != null) return;
         else CurTurret = turret;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && CurTurret == null)
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            RequestTurretPlacement(TurretType.Default);
+            RequestTurretPlacement(0);
         }
 
 
@@ -52,6 +54,7 @@ public class TurretManager : MonoBehaviour
 
             if((Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)) && canBePlaced)
             {
+                gm.Gold -= CurTurret.Stats.TurretPrice;
                 CurTurret.SetPlacementValidity(true);
                 CurTurret.Activate();
                 CurTurret = null;
@@ -66,25 +69,22 @@ public class TurretManager : MonoBehaviour
         }
     }
 
-    public void RequestTurretPlacement(TurretType type)
+    public void RequestTurretPlacement(int turretID)
     {
+        if (CurTurret != null || currentTurretPlacementCooldown > 0f || gm.Gold < turretStats[turretID].TurretPrice) return;
+
         // check monies
         // suck dick
         // ocean man
 
-        switch (type)
-        {
-            case TurretType.Default:
-                Turret go = Instantiate(turretPrefab, Input.mousePosition, Quaternion.identity);
-                go.Stats = turretStats[(int)type];
-                EnterPlacementMode(go);
-                break;
-
-        }
+        Turret go = Instantiate(turretPrefab, Input.mousePosition, Quaternion.identity);
+        go.Stats = turretStats[turretID];
+        go.gm = gm;
+        EnterPlacementMode(go);
     }
 
-    public string[] GetTurretInfo(TurretType type)
+    public string[] GetTurretInfo(int turretID)
     {
-        return null;
+        return new string[] { turretStats[turretID].name, turretStats[turretID].TurretInfo };
     }
 }

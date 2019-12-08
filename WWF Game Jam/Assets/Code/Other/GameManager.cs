@@ -13,11 +13,15 @@ public class GameManager : MonoBehaviour
         {
             currentHealth = value;
             ui.UpdateHeath(currentHealth);
-            // TODO check if game over
+            if(currentHealth < 1)
+            {
+                Time.timeScale = 0f;
+                ui.ActivateFailureWindow();
+            }
         }
     }
 
-    private int currentGold;
+    [SerializeField] private int currentGold;
     public int Gold
     {
         get => currentGold;
@@ -28,7 +32,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private MainUIWindow ui;
+    public MainUIWindow ui;
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask turretLayer;
@@ -41,8 +45,6 @@ public class GameManager : MonoBehaviour
     {
         turManager = GetComponent<TurretManager>();
         tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
-
-        ui.SetUI(new int[0], currentHealth, currentHealth, 0, new Sprite[0]);
     }
 
     private void Update()
@@ -59,19 +61,28 @@ public class GameManager : MonoBehaviour
 
         var ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D[] hit = Physics2D.RaycastAll(ray.origin, ray.direction, 100f, turretLayer);
+
+        // close turret info panel when clicking on ground
+        if(Input.GetMouseButtonDown(1) && hit.Length == 0)
+        {
+            ui.ClosePlacedTurretInfo();
+        }
+
+        // update turret target
         Turret targetedTurret;
-        for(int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < hit.Length; i++)
         {
             // activate raycast turret range
             targetedTurret = hit[i].collider.GetComponent<Turret>();
-            if(targetedTurret.IsActive)
+            if (targetedTurret.IsActive)
             {
                 targetedTurret.SetRangeIndicatorActive(true);
                 lastHoveredTurret = targetedTurret;
+                ui.OpenPlacedTurretInfo(lastHoveredTurret);
                 break;
             }
         }
-        if(lastHoveredTurret == null && turManager.CurTurret != null)
+        if (lastHoveredTurret == null && turManager.CurTurret != null)
         {
             // see current built turret range
             lastHoveredTurret = turManager.CurTurret;

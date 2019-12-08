@@ -22,6 +22,7 @@ public class ExitWindow : WindowBase
 
     public void BackToMenu()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(0);
     }
 

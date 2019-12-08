@@ -31,7 +31,7 @@ public class TrackManager : MonoBehaviour
         curve.AddKey(new Keyframe(trackLength, waypoints.Length - 1, 0f, 0f, 0f, 0f));
 
         // debug trashbag
-        CreateTrashbag();
+        //CreateTrashbag();
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class TrackManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            for (int i = 0; i < debugSpawnCount; i++) CreateTrashbag();
+            //for (int i = 0; i < debugSpawnCount; i++) CreateTrashbag();
         }
     }
 
