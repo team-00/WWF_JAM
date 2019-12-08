@@ -21,4 +21,4 @@ MonoBehaviour:
   AttackSpeed: 6
   TurretPrice: 250
   TurretSellPrice: 200
-  TurretInfo: High trash penetration, but low attack speed.
+  TurretInfo: Clears many trashbags in close succession, but has very low attack speed.
