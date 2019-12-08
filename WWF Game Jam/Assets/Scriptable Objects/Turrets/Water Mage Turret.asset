@@ -19,6 +19,6 @@ MonoBehaviour:
   ProjectileStats: {fileID: 11400000, guid: cd0e9112b149bb248a91faf4205ff037, type: 2}
   AttackRange: 8
   AttackSpeed: 0.1
-  TurretPrice: 1000
-  TurretSellPrice: 500
+  TurretPrice: 1500
+  TurretSellPrice: 1000
   TurretInfo: UNLEASH THE BEAST
