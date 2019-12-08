@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrashbagMobs:
   - Trashbag: {fileID: 11400000, guid: a34864b5cd6893c48a75d456feb69284, type: 2}
-    Count: 10
-    spawnFrequency: 0.7
+    Count: 20
+    spawnFrequency: 0.4

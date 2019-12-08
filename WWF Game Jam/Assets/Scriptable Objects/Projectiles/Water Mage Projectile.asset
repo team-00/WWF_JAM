@@ -15,4 +15,4 @@ MonoBehaviour:
   ProjectileSpeed: 30
   CollisionRadius: 0.25
   MaxTrashKills: 1
-  TrashDamage: 1
+  TrashDamage: 2

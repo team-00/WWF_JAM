@@ -17,8 +17,8 @@ MonoBehaviour:
   TurretSprite: {fileID: 21300000, guid: 5aad07a88d5b3324388d73de018b0e77, type: 3}
   ShopSprite: {fileID: 21300000, guid: 4d767b96c1fe9454bac056478fe0155f, type: 3}
   ProjectileStats: {fileID: 11400000, guid: 1b574329dc406bc469cd37495bd37f00, type: 2}
-  AttackRange: 3
-  AttackSpeed: 3
-  TurretPrice: 200
-  TurretSellPrice: 150
+  AttackRange: 4
+  AttackSpeed: 6
+  TurretPrice: 250
+  TurretSellPrice: 200
   TurretInfo: High trash penetration, but low attack speed.
