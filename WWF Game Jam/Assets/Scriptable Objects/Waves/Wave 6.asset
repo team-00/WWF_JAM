@@ -22,6 +22,3 @@ MonoBehaviour:
   - Trashbag: {fileID: 11400000, guid: a822c8fe1a3fbda408d2d9b98d4244b6, type: 2}
     Count: 3
     spawnFrequency: 0.4
-  - Trashbag: {fileID: 11400000, guid: eb4adb728b5dc5b409bbc8b6c52a6631, type: 2}
-    Count: 3
-    spawnFrequency: 1.25
