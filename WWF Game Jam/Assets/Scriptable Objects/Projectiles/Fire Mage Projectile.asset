@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileSpeed: 35
   CollisionRadius: 0.25
-  MaxTrashKills: 2
-  TrashDamage: 2
+  MaxTrashKills: 1
+  TrashDamage: 1
