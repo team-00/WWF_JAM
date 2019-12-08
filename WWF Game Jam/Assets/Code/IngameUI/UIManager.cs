@@ -65,11 +65,13 @@ public class UIManager : MonoBehaviour
         }
 
         currentUIState = (UIState)newState;
+        AudioManager.PlayButtonSound();
     }
 
     public void SpawnTurret(int id)
     {
         turretManager.RequestTurretPlacement(id);
+        AudioManager.PlayButtonSound();
     }
 
     public void OpenGeneralTurretInfo(int id)
@@ -79,12 +81,6 @@ public class UIManager : MonoBehaviour
         // TODO make <name> + <info> on turretStats
         //iWindow.SetUp("Firemage Panda-"+ id, "The Firemage Panda is a super efficient single target turret with medium attackspeed and cool looking attacks.\n\nAlso: Jan sucks");
         iWindow.SetUp(wndInfo[0], wndInfo[1]);
-    }
-
-    public void StartNextRound()
-    {
-        Debug.Log("Start next Round");
-        // TODO wave manager next round
     }
 
     public void ReloadLevel()
