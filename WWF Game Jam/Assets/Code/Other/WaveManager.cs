@@ -23,7 +23,8 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator WaveHandler()
     {
-        WaveInfo wave = waves[currentWave++];
+        WaveInfo wave = waves[currentWave];
+        if (currentWave < waves.Length - 1) currentWave++;
 
         for(int i = 0; i < wave.TrashbagMobs.Length; i++)
         {
