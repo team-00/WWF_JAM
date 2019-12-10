@@ -4556,6 +4556,11 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.b
       value: 0.64705884
       objectReference: {fileID: 0}
+    - target: {fileID: 3715674105490394608, guid: 41cfb3589f28b5e41a3a0dadb2447402,
+        type: 3}
+      propertyPath: m_ForceIntoRT
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3715674105490394383, guid: 41cfb3589f28b5e41a3a0dadb2447402,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4614,10 +4619,9 @@ PrefabInstance:
     - target: {fileID: 3715674105490394382, guid: 41cfb3589f28b5e41a3a0dadb2447402,
         type: 3}
       propertyPath: m_AssetsPPU
-      value: 100
+      value: 108
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3715674105490394382, guid: 41cfb3589f28b5e41a3a0dadb2447402, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41cfb3589f28b5e41a3a0dadb2447402, type: 3}
 --- !u!1 &1379662951
 GameObject:
